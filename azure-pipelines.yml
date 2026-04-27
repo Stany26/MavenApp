@@ -5,12 +5,12 @@ pool:
   name: 'self-hosted-pool'
 
 steps:
-- task: Maven@3
+- task: Maven@4  # Updated to version 4 to remove the 'deprecated' warning
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'Path'
-    jdkDirectory: 'C:\Program Files\jdk-21.0.7'
+    javaHomeOption: 'JDKVersion' # Let Azure find it by version
+    jdkVersionOption: '1.21'     # This looks for Java 21 in your system path
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
